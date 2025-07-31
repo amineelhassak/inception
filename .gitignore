@@ -1,0 +1,50 @@
+# Docker volumes and data directories
+data/
+srcs/data/
+
+# MariaDB/MySQL files
+*.frm
+*.ibd
+*.MAD
+*.MAI
+*.CSM
+*.CSV
+ib_logfile*
+ibdata*
+ibtmp*
+aria_log*
+multi-master.info
+mysql_upgrade_info
+*.pid
+ib_buffer_pool
+debian-*.flag
+
+# WordPress uploads and cache
+wp-content/uploads/
+wp-content/cache/
+wp-content/backup-*
+wp-config.php
+
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Logs
+*.log
+logs/
+
+# Temporary files
+*.tmp
+*.temp
