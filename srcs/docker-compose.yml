@@ -35,12 +35,10 @@ services:
       - wordpress:/var/www/html
     depends_on:
       - mariadb
-      - redis
     networks:
       - amine_network
     restart: always
 
-<<<<<<< HEAD
   website:
     container_name: website
     build:
@@ -51,13 +49,10 @@ services:
       - amine_network
     restart: always
 
-=======
->>>>>>> 8d4acc561e807d12a2570973cfbb3a94f18085b8
   redis:
     container_name: redis
     build:
       context: ./requirements/bonus/redis
-<<<<<<< HEAD
     ports:
       - "6379:6379"
     networks:
@@ -102,17 +97,6 @@ services:
     networks:
       - amine_network
     restart: always
-=======
-    env_file:
-      - .env
-    volumes:
-      - redis:/var/lib/redis
-    networks:
-      - amine_network
-    restart: always
-    ports:
-      - "6379:6379"
->>>>>>> 8d4acc561e807d12a2570973cfbb3a94f18085b8
 
 volumes:
   wordpress:
@@ -127,17 +111,8 @@ volumes:
       type: none
       device: /Users/b/Desktop/incep/data/mariadb
       o: bind
-<<<<<<< HEAD
   portainer_data:
     driver: local
-=======
-  redis:
-    driver: local
-    driver_opts:
-      type: none
-      device: /Users/b/Desktop/incep/data/redis
-      o: bind
->>>>>>> 8d4acc561e807d12a2570973cfbb3a94f18085b8
 
 networks:
   amine_network:
