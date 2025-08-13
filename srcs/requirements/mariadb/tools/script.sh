@@ -1,6 +1,5 @@
 #!/bin/bash
 
-
 service mariadb start
 sleep 15
 	mysql -e "CREATE DATABASE IF NOT EXISTS \`${DATABASE_NAME}\`;"

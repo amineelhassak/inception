@@ -1,0 +1,17 @@
+FROM debian:bullseye
+
+RUN apt-get update && apt-get install -y \
+    php7.4 \
+    php7.4-mysql \
+    wget \
+    && rm -rf /var/lib/apt/lists/*
+
+RUN mkdir -p /var/www/html
+
+RUN wget -O /var/www/html/index.php https://www.adminer.org/latest.php
+
+WORKDIR /var/www/html
+
+EXPOSE 8080
+
+CMD ["php", "-S", "0.0.0.0:8080", "-t", "/var/www/html"]
