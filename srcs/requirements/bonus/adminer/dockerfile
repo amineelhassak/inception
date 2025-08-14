@@ -3,12 +3,12 @@ FROM debian:bullseye
 RUN apt-get update && apt-get install -y \
     php7.4 \
     php7.4-mysql \
-    wget \
+    adminer \
     && rm -rf /var/lib/apt/lists/*
 
 RUN mkdir -p /var/www/html
 
-RUN wget -O /var/www/html/index.php https://www.adminer.org/latest.php
+RUN cp /usr/share/adminer/adminer.php /var/www/html/index.php
 
 WORKDIR /var/www/html
 
