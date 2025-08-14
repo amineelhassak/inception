@@ -1,11 +1,10 @@
 FROM debian:bullseye
 
-RUN apt-get update && apt-get install -y vsftpd
+RUN apt-get update && apt-get install -y vsftpd 
+#(very secure ftp daemon)
 
 COPY tools/script.sh /usr/local/bin/script.sh
 
 RUN chmod +x /usr/local/bin/script.sh
-
-EXPOSE 21
 
 CMD ["/usr/local/bin/script.sh"]

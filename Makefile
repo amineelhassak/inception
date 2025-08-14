@@ -46,17 +46,17 @@ clean: down
 	@echo "$(RED)🧹 Cleaning up containers and volumes...$(RESET)"
 	@docker compose -f $(COMPOSE_FILE) down -v
 	
-	fclean: clean
+fclean: clean
 	@echo "$(RED)💀 Performing deep cleanup...$(RESET)"
 	@docker system prune -af --volumes
 	@echo "$(RED)🗑️  Removing data directories...$(RESET)"
 	@rm -rf $(MARIADB_DATA)/* $(WORDPRESS_DATA)/* $(REDIS_DATA)/*
 	@echo "$(GREEN)✅ Deep cleanup completed!$(RESET)"
 	
-	re: fclean all
+re: fclean all
 	@echo "$(PURPLE)🔄 Rebuild completed!$(RESET)"
 	
-	status:
+status:
 	@echo "$(CYAN)📊 Docker containers status:$(RESET)"
 	@docker compose -f $(COMPOSE_FILE) ps
 	
