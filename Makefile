@@ -1,6 +1,6 @@
 NAME			= inception
 COMPOSE_FILE	= ./srcs/docker-compose.yml
-DATA_PATH		= /home/amel-has/data
+DATA_PATH		= $(HOME)/data/inception
 MARIADB_DATA	= $(DATA_PATH)/mariadb
 WORDPRESS_DATA	= $(DATA_PATH)/wordpress
 REDIS_DATA		= $(DATA_PATH)/redis
