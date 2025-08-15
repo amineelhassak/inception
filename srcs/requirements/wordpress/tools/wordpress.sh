@@ -32,8 +32,8 @@ if [ ! -f wp-config.php ]; then
     # Create wp-config.php
     wp config create \
         --dbname=$DATABASE_NAME \
-        --dbuser=$WP_ADMIN_USER \
-        --dbpass=$WP_ADMIN_PASSWORD \
+        --dbuser=$DB_USER \
+        --dbpass=$DB_PASSWORD \
         --dbhost=$DB_HOST \
         --allow-root
 

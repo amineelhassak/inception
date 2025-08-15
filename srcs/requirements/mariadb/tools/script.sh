@@ -22,8 +22,8 @@ if ! mysql -e "USE ${DATABASE_NAME};" 2>/dev/null; then
     
     # Create database and user
     mysql -e "CREATE DATABASE IF NOT EXISTS \`${DATABASE_NAME}\`;"
-    mysql -e "CREATE USER IF NOT EXISTS \`${WP_ADMIN_USER}\`@'%' IDENTIFIED BY '${WP_ADMIN_PASSWORD}';"
-    mysql -e "GRANT ALL PRIVILEGES ON ${DATABASE_NAME}.* TO \`${WP_ADMIN_USER}\`@'%';"
+    mysql -e "CREATE USER IF NOT EXISTS \`${DB_USER}\`@'%' IDENTIFIED BY '${DB_PASSWORD}';"
+    mysql -e "GRANT ALL PRIVILEGES ON ${DATABASE_NAME}.* TO \`${DB_USER}\`@'%';"
     mysql -e "ALTER USER 'root'@'localhost' IDENTIFIED BY '${DB_ROOT_PASSWORD}';"
     mysql -e "FLUSH PRIVILEGES;"
     

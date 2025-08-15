@@ -103,13 +103,13 @@ volumes:
     driver: local
     driver_opts:
       type: none
-      device: /home/amel-has/data/wordpress
+      device: /private/tmp/inception/data/wordpress
       o: bind
   mariadb:
     driver: local
     driver_opts:
       type: none
-      device: /home/amel-has/data/mariadb
+      device: /private/tmp/inception/data/mariadb
       o: bind
   portainer_data:
     driver: local
