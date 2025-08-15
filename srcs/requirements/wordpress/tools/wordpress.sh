@@ -26,6 +26,9 @@ sleep 10
 if [ ! -f wp-config.php ]; then
     echo "Setting up WordPress..."
     
+    # Remove any existing WordPress files
+    rm -rf *
+    
     # Download WordPress
     wp core download --allow-root
     
@@ -36,24 +39,25 @@ if [ ! -f wp-config.php ]; then
         --dbpass=$DB_PASSWORD \
         --dbhost=$DB_HOST \
         --allow-root
+        
+    # Wait a bit for database
+    sleep 5
 
-    # Install WordPress if not already installed
-    if ! wp core is-installed --allow-root; then
-        wp core install \
-            --url=$DOMAINE_NAME \
-            --title="$WP_TITLE" \
-            --admin_user=$WP_ADMIN_USER \
-            --admin_email=$WP_ADMIN_EMAIL \
-            --admin_password=$WP_ADMIN_PASSWORD \
-            --skip-email \
-            --allow-root
+    # Install WordPress
+    wp core install \
+        --url=https://$DOMAINE_NAME \
+        --title="$WP_TITLE" \
+        --admin_user=$WP_ADMIN_USER \
+        --admin_email=$WP_ADMIN_EMAIL \
+        --admin_password=$WP_ADMIN_PASSWORD \
+        --skip-email \
+        --allow-root
             
-        # Create additional user
-        wp user create $WP_USER $WP_EMAIL \
-            --role=author \
-            --user_pass=$WP_PASSWORD \
-            --allow-root
-    fi
+    # Create additional user
+    wp user create $WP_USER $WP_EMAIL \
+        --role=author \
+        --user_pass=$WP_PASSWORD \
+        --allow-root
 
     # Configure Redis
     wp config set WP_REDIS_HOST redis --allow-root

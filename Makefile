@@ -1,6 +1,6 @@
 NAME			= inception
 COMPOSE_FILE	= ./srcs/docker-compose.yml
-DATA_PATH		= /home/amel-has/data
+DATA_PATH		= /home/login/data
 MARIADB_DATA	= $(DATA_PATH)/mariadb
 WORDPRESS_DATA	= $(DATA_PATH)/wordpress
 REDIS_DATA		= $(DATA_PATH)/redis
@@ -20,10 +20,15 @@ all: build up
 	@echo "$(GREEN)✅ $(NAME) is up and running!$(RESET)"
 
 build:
-	@echo "$(YELLOW)🔨 Creating data directories...$(RESET)"
-	@mkdir -p $(MARIADB_DATA)
-	@mkdir -p $(WORDPRESS_DATA)
-	@mkdir -p $(REDIS_DATA)
+	# Data directory path
+DATA_DIR = /home/amel-has/data
+
+# Create data directories
+create-dirs:
+	@echo "$(BLUE)🔨 Creating data directories...$(NC)"
+	@mkdir -p $(DATA_DIR)/wordpress
+	@mkdir -p $(DATA_DIR)/mariadb
+	@mkdir -p $(DATA_DIR)/redis
 	@echo "$(BLUE)🐳 Building Docker containers...$(RESET)"
 	@docker compose -f $(COMPOSE_FILE) build --no-cache
 	
