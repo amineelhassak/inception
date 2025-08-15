@@ -20,10 +20,13 @@ done
 if ! mysql -e "USE ${DATABASE_NAME};" 2>/dev/null; then
     echo "Creating database and user..."
     
-    # Create database and user
+    # Create database and user first (before setting root password)
     mysql -e "CREATE DATABASE IF NOT EXISTS \`${DATABASE_NAME}\`;"
     mysql -e "CREATE USER IF NOT EXISTS \`${DB_USER}\`@'%' IDENTIFIED BY '${DB_PASSWORD}';"
     mysql -e "GRANT ALL PRIVILEGES ON ${DATABASE_NAME}.* TO \`${DB_USER}\`@'%';"
+    mysql -e "FLUSH PRIVILEGES;"
+    
+    # Set root password last
     mysql -e "ALTER USER 'root'@'localhost' IDENTIFIED BY '${DB_ROOT_PASSWORD}';"
     mysql -e "FLUSH PRIVILEGES;"
     
@@ -33,7 +36,7 @@ else
 fi
 
 # Stop MariaDB to restart with proper daemon
-mysqladmin -u root -p"${DB_ROOT_PASSWORD}" shutdown 2>/dev/null || mysqladmin shutdown
+mysqladmin shutdown 2>/dev/null || true
 
 # Start MariaDB daemon
 exec "$@"
