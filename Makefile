@@ -1,6 +1,6 @@
 NAME			= inception
 COMPOSE_FILE	= ./srcs/docker-compose.yml
-DATA_PATH		= /home/login/data
+DATA_PATH		= /home/amel-has/data
 MARIADB_DATA	= $(DATA_PATH)/mariadb
 WORDPRESS_DATA	= $(DATA_PATH)/wordpress
 REDIS_DATA		= $(DATA_PATH)/redis
@@ -20,7 +20,7 @@ all: build up
 	@echo "$(GREEN)✅ $(NAME) is up and running!$(RESET)"
 
 build:
-	# Data directory path
+	@$(MAKE) create-dirs
 DATA_DIR = /home/amel-has/data
 
 # Create data directories
