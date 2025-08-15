@@ -1,6 +1,6 @@
 NAME			= inception
 COMPOSE_FILE	= ./srcs/docker-compose.yml
-DATA_PATH		= /Users/b/Desktop/incep/data
+DATA_PATH		= /home/amel-has/data
 MARIADB_DATA	= $(DATA_PATH)/mariadb
 WORDPRESS_DATA	= $(DATA_PATH)/wordpress
 REDIS_DATA		= $(DATA_PATH)/redis
@@ -50,7 +50,7 @@ fclean: clean
 	@echo "$(RED)💀 Performing deep cleanup...$(RESET)"
 	@docker system prune -af --volumes
 	@echo "$(RED)🗑️  Removing data directories...$(RESET)"
-	@rm -rf $(MARIADB_DATA)/* $(WORDPRESS_DATA)/* $(REDIS_DATA)/*
+	@sudo rm -rf $(MARIADB_DATA)/* $(WORDPRESS_DATA)/* $(REDIS_DATA)/*
 	@echo "$(GREEN)✅ Deep cleanup completed!$(RESET)"
 	
 re: fclean all
